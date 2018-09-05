@@ -2,6 +2,11 @@
 
 *** Work In Progress — Will be consolidated once the release is ready ***
 
+* #420: Removed Swift 2 templates. Because it's old.
+* IB #423: Renamed `storyboards` to `ib`, so user template search paths changed.
+* XCAssets #453: All groups are no longer namespaced by default. To enable behaviour again: `forceProvidesNamespaces`
+* #409: All templates now have `swiftlint:disable all` at the top, so you no longer need to ignore the generated files, although this is still recommended.
+* #416 and #475: new Stencil/StencilSwiftKit, so new features for template writers.
 * XCAssets #480: no longer generate `allXXX` constants by default. Can be turned on again with `allValues` flag.
 * XCAssets #480: removed `noAllValues` parameter, replaced by `allValues` parameter.
 * XCAssets #482: removed deprecated `allValues` constant
