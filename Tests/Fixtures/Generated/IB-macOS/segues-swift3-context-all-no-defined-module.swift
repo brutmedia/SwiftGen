@@ -6,6 +6,7 @@ import Foundation
 import AppKit
 import ExtraModule
 import PrefsWindowController
+import SwiftGen
 
 // swiftlint:disable superfluous_disable_command
 // swiftlint:disable file_length

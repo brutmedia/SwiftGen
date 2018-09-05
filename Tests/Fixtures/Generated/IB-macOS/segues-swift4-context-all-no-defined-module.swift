@@ -6,6 +6,7 @@ import Foundation
 import AppKit
 import ExtraModule
 import PrefsWindowController
+import SwiftGen
 
 // swiftlint:disable superfluous_disable_command
 // swiftlint:disable file_length
@@ -34,7 +35,8 @@ internal protocol SegueType: RawRepresentable { }
 
 internal extension NSSeguePerforming {
   func perform<S: SegueType>(segue: S, sender: Any? = nil) where S.RawValue == String {
-    performSegue?(withIdentifier: segue.rawValue, sender: sender)
+    let identifier = NSStoryboardSegue.Identifier(segue.rawValue)
+    performSegue?(withIdentifier: identifier, sender: sender)
   }
 }
 

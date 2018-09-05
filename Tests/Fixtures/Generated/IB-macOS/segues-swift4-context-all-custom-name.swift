@@ -13,7 +13,7 @@ import PrefsWindowController
 // MARK: - Storyboard Segues
 
 // swiftlint:disable explicit_type_interface identifier_name line_length type_body_length type_name
-internal enum StoryboardSegue {
+internal enum XCTStoryboardCustom {
   internal enum Message: String, SegueType {
     case embed = "Embed"
     case fade = "Fade"
@@ -34,7 +34,8 @@ internal protocol SegueType: RawRepresentable { }
 
 internal extension NSSeguePerforming {
   func perform<S: SegueType>(segue: S, sender: Any? = nil) where S.RawValue == String {
-    performSegue?(withIdentifier: segue.rawValue, sender: sender)
+    let identifier = NSStoryboardSegue.Identifier(segue.rawValue)
+    performSegue?(withIdentifier: identifier, sender: sender)
   }
 }
 

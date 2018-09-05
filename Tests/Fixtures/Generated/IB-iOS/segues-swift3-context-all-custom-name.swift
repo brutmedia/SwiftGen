@@ -3,9 +3,12 @@
 
 // swiftlint:disable sorted_imports
 import Foundation
-import AppKit
+import AVKit
 import ExtraModule
-import PrefsWindowController
+import GLKit
+import LocationPicker
+import SlackTextViewController
+import UIKit
 
 // swiftlint:disable superfluous_disable_command
 // swiftlint:disable file_length
@@ -13,17 +16,21 @@ import PrefsWindowController
 // MARK: - Storyboard Segues
 
 // swiftlint:disable explicit_type_interface identifier_name line_length type_body_length type_name
-internal enum StoryboardSegue {
-  internal enum Message: String, SegueType {
-    case embed = "Embed"
-    case fade = "Fade"
-    case login = "Login"
-    case modal = "Modal"
-    case popover = "Popover"
-    case sheet = "Sheet"
-    case show = "Show"
+internal enum XCTStoryboardCustom {
+  internal enum AdditionalImport: String, SegueType {
+    case afterDelay = "After Delay"
+    case `open`
     case `private`
     case `public`
+  }
+  internal enum Message: String, SegueType {
+    case customBack = "CustomBack"
+    case embed = "Embed"
+    case nonCustom = "NonCustom"
+    case showNavCtrl = "Show-NavCtrl"
+  }
+  internal enum Wizard: String, SegueType {
+    case showPassword = "ShowPassword"
   }
 }
 // swiftlint:enable explicit_type_interface identifier_name line_length type_body_length type_name
@@ -32,9 +39,9 @@ internal enum StoryboardSegue {
 
 internal protocol SegueType: RawRepresentable { }
 
-internal extension NSSeguePerforming {
+internal extension UIViewController {
   func perform<S: SegueType>(segue: S, sender: Any? = nil) where S.RawValue == String {
-    performSegue?(withIdentifier: segue.rawValue, sender: sender)
+    performSegue(withIdentifier: segue.rawValue, sender: sender)
   }
 }
 
